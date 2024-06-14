@@ -50,15 +50,24 @@ No item de disparo de e-mail não há necessidade de implementar o disparo em si
 ### Feedback
 Como parte da avaliação, desejamos que faça um feedback sobre seu entendimento de cada camada do projeto:
 1. Qual papel da camada de Domain ?
-R: Ela representa o domínio da aplicação, aonde conceitos centrais do negócio estão alocadas, ela tem objetos de valor (value objects), serviços de domínio e interfaces de repositório, e encapsulam as nossas regras que não queremos que o usuário tenha acesso.
+   
+**R: Ela representa o domínio da aplicação, aonde conceitos centrais do negócio estão alocadas, ela tem objetos de valor (value objects), serviços de domínio e interfaces de repositório, e encapsulam as nossas regras que não queremos que o usuário tenha acesso.**
+
 2. Qual papel da camada de Infrastructure ?
-R: responsável pelos detalhes técnicos, como acesso ao banco de dados, eventos, integração com APIs externas. Ela é dependente da Domain.
+
+**R: responsável pelos detalhes técnicos, como acesso ao banco de dados, eventos, integração com APIs externas. Ela é dependente da Domain.**
+
 3. Qual papel da camada de WebApp ?
-R: é aonde definitivamente a camada que o usuário irá interagir, temos as views, controllers, modelos, e serviço de aplicação.
+   
+**R: é aonde definitivamente a camada que o usuário irá interagir, temos as views, controllers, modelos, e serviço de aplicação.**
+
 4. Faça um resumo de como funciona a comunicação entre as camadas e qual é suas hierarquias.
-R: é o que fizemos aqui hoje, as camadas internas como a Domain não pode depender das camadas externas.
+   
+**R: é o que fizemos aqui hoje, as camadas internas como a Domain não pode depender das camadas externas.**
+
 5. Aponte um item negativo sobre o projeto que julgar necessário.
-R: não gosto de usar o autoMapper, usaria outro ORM, mas pelo tempo, ele é o mais rápido, faria mais abstrações, como camadas do IOC, melhor definido, testes unitários, paginação.
+    
+**R: não gosto de usar o autoMapper, usaria outro ORM, mas pelo tempo, ele é o mais rápido, faria mais abstrações, como camadas do IOC, melhor definido, testes unitários, paginação.**
 
 OBS: minha dificuldade, como não construo com tanta frequência um prejeto WebApp, tive dificuldades nessa fase, ficou incompleto e não consegui testar.
 

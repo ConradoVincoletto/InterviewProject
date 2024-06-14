@@ -43,6 +43,7 @@ public class SqlDbContext : DbContext
         }
 
         base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(SqlDbContext).Assembly);
     }
     #endregion
 

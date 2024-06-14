@@ -3,7 +3,9 @@ using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 using Infrastructure.Data.Contexts;
 using Infrastructure.Data.Repositories;
+using Infrastructure.EntityConfigurations;
 using Infrastructure.Events;
+using Infrastructure.Mapping;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,7 +18,9 @@ public static class InfrastructureConfiguration
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<SqlDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("SQLConnection"), b => b.MigrationsAssembly(typeof(SqlDbContext).Assembly.FullName)));
+        services.AddDbContext<SqlDbContext>(options =>
+         options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"
+        ), b => b.MigrationsAssembly(typeof(SqlDbContext).Assembly.FullName)));
 
         services.AddMediatR(cfg =>
         {
@@ -30,8 +34,9 @@ public static class InfrastructureConfiguration
 
         services.AddScoped<SqlDbContext>();
 
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
+        services.AddAutoMapper(typeof(UserMapping));
 
+        var myhandlers = AppDomain.CurrentDomain.Load("developers-exam.Infrastructure");        
 
         return services;
     }

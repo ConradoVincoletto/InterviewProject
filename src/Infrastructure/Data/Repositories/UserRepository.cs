@@ -2,6 +2,7 @@
 using Domain.Interfaces.Repositories;
 using Infrastructure.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Infrastructure.Data.Repositories;
 
@@ -44,5 +45,10 @@ public class UserRepository : IUserRepository
         _dbContext.Users.Update(user);
         await _dbContext.SaveChangesAsync();
         return user;
+    }
+
+    public async Task<bool> Exists(Expression<Func<User, bool>> predicate)
+    {
+        return await _dbContext.Set<User>().AnyAsync(predicate);
     }
 }

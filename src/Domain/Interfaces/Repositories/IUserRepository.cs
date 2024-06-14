@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using System.Linq.Expressions;
 
 namespace Domain.Interfaces.Repositories;
 
@@ -9,4 +10,5 @@ public interface IUserRepository
     Task<User> Create(User user);
     Task<User> Update(User user);
     Task<User> Remove(User user);
+    Task<bool> Exists(Expression<Func<User, bool>> predicate);
 }

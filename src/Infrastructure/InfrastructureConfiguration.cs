@@ -1,6 +1,10 @@
 using Domain.Interfaces;
+using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Services;
 using Infrastructure.Data.Contexts;
+using Infrastructure.Data.Repositories;
 using Infrastructure.Events;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,7 +25,12 @@ public static class InfrastructureConfiguration
         
         services.AddScoped<IDomainEventHandler, DomainEventHandler>();
 
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUserService, UserService>();
+
         services.AddScoped<SqlDbContext>();
+
+        services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 
         return services;

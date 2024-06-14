@@ -2,6 +2,7 @@ using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Domain.Interfaces;
+using Domain.Entities;
 
 namespace Infrastructure.Data.Contexts;
 
@@ -14,6 +15,9 @@ public class SqlDbContext : DbContext
 
     public SqlDbContext(DbContextOptions<SqlDbContext> option) : base(option) { }
 
+    public DbSet<User> Users;
+
+    #region Overrides
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         var result = await base.SaveChangesAsync(cancellationToken);
@@ -40,6 +44,7 @@ public class SqlDbContext : DbContext
 
         base.OnModelCreating(modelBuilder);
     }
+    #endregion
 
     private async Task DispatchEvents()
     {
